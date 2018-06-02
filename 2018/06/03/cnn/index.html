@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="机器学习,神经网络," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言卷积神经网络（CNN）是一种著名的深度学习模型，其名称的由来是因为卷积运算被引入到了这种模型中，CNN可以归类为多层前馈神经网络模型（BP神经网络模型）在计算机视觉领域中得到了非常广泛的应用，例如图像分类、目标检测及跟踪等。下面，将详细介绍CNN的基本原理。">
+<meta name="keywords" content="机器学习,神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="卷积神经网络（CNN）详解">
+<meta property="og:url" content="http://yumicode.github.io/2018/06/03/cnn/index.html">
+<meta property="og:site_name" content="玉米的博客">
+<meta property="og:description" content="前言卷积神经网络（CNN）是一种著名的深度学习模型，其名称的由来是因为卷积运算被引入到了这种模型中，CNN可以归类为多层前馈神经网络模型（BP神经网络模型）在计算机视觉领域中得到了非常广泛的应用，例如图像分类、目标检测及跟踪等。下面，将详细介绍CNN的基本原理。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/15.png">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/19.png">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/16.gif">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/17.gif">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/18.png">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/20.png">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/21.png">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/22.png">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/23.png">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/24.png">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/25.png">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/26.png">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/27.jpg">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/06.png">
+<meta property="og:image" content="http://yumicode.github.io/uploads/20180602/28.jpg">
+<meta property="og:updated_time" content="2018-06-02T18:16:22.923Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="卷积神经网络（CNN）详解">
+<meta name="twitter:description" content="前言卷积神经网络（CNN）是一种著名的深度学习模型，其名称的由来是因为卷积运算被引入到了这种模型中，CNN可以归类为多层前馈神经网络模型（BP神经网络模型）在计算机视觉领域中得到了非常广泛的应用，例如图像分类、目标检测及跟踪等。下面，将详细介绍CNN的基本原理。">
+<meta name="twitter:image" content="http://yumicode.github.io/uploads/20180602/15.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yumicode.github.io/2018/06/03/cnn/"/>
+
+
+
+
+
+  <title>卷积神经网络（CNN）详解 | 玉米的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">玉米的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yumicode.github.io/2018/06/03/cnn/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="玉米">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玉米的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">卷积神经网络（CNN）详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-03T01:21:25+08:00">
+                2018-06-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>卷积神经网络（CNN）是一种著名的深度学习模型，其名称的由来是因为卷积运算被引入到了这种模型中，CNN可以归类为多层前馈神经网络模型（BP神经网络模型）在计算机视觉领域中得到了非常广泛的应用，例如图像分类、目标检测及跟踪等。下面，将详细介绍CNN的基本原理。</p>
+<hr>
+<a id="more"></a>
+<h1 id="why-CNN"><a href="#why-CNN" class="headerlink" title="why CNN"></a>why CNN</h1><p>CNN的输入是二维模型，所以利于处理图像视频的高维数据，同时由于其不用手动提取特征，使得在实际应用中可以大展身手，不过由于模型中所需参数极多，对计算机的计算力要求较高，加上训练模型所需要的数据量很大，所以在上世纪九十年代提出之后，基本没有得到大规模应用。随着大数据时代的到来，在高性能计算平台上用大规模的数据集训练复杂模型，成为了可能，正是在这种背景下，卷积神经网络开始蓬勃发展</p>
+<h1 id="CNN基本结构"><a href="#CNN基本结构" class="headerlink" title="CNN基本结构"></a>CNN基本结构</h1><p><strong>卷积神经网络</strong>顾名思义就是：卷积+神经网络，前面的博客中我已经详细介绍了图像的卷积和BP神经网络，所以阅读这篇博客的读者，我就默认你们已经阅读过了前面的内容，还木有了解的小伙伴赶快点击上面链接。<br>先来看一下CNN的基本结构：<br><img src="/uploads/20180602/15.png" alt="image">  </p>
+<p>主要有卷积层，池化层，全连接层，输出层，另外还涉及两个函数，激活函数和softmax函数，下面将一一进行介绍。</p>
+<h2 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h2><p><img src="/uploads/20180602/19.png" alt="image">  </p>
+<p>我们知道传统的机器学习方法中，我们要手动进行特征选择和特征提取，而在CNN中是不需要我们提取特征，CNN会自动进行特征提取，那么CNN是怎么做到的呢，对了，特征提取的工作就由卷积层负责。我们在<a href="../图像的卷积/">图像卷积</a>那里提到，卷积其实就是滤波，滤波和神经网络又有什么关系呢？我们设想一下，如要识别图像中某种特定曲线，是不是就要用滤波器将其他曲线信号给抑制，让这种曲线经过滤波器时有很高的输出，这其实就是卷积层的特征提取过程了（详细过程见图像的卷积）这种滤波器，我们称为卷积核，一个卷积核只负责提取一种特征，卷积层一般又多个卷积核组成。  其过程动图如下：   </p>
+<p><img src="/uploads/20180602/16.gif" alt="image"> <img src="/uploads/20180602/17.gif" alt="image">  </p>
+<p>对于卷积层，其输入是原始图像，输出是三个通道的特征图，原始图像和特征图维数的关系如下：<br>(W−F+2P)/S+1<br>其中W:输入单元的大小（宽或高）<br>F:卷积核的大小<br>S：步幅（stride）<br>P：补零（zero-padding)的数量<br><img src="/uploads/20180602/18.png" alt="image"></p>
+<h2 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h2><p>池化层的作用用一句话概括就是：采样降维。试想一下，如果用传统神经网络的全连接方式，对于上面28X28的特征图就需要28^4个参数，这还只是一个通道的一个特征图，显而易见，我们需要先降维。先将特征图划分小区域（一般为2X2小区域），然后用区域内最大值代替此区域，这就是最大池化；或用区域均值代替，这就是均值池化。如下图所示：<br><img src="/uploads/20180602/20.png" alt="image"> <img src="/uploads/20180602/21.png" alt="image"></p>
+<h2 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h2><p>在前面，我们提到过，在传统神经网络中，我们使用的就是全连接，在卷积神经网络中，全连接层又有什么用呢？先来看全连接层的结构图：<br><img src="/uploads/20180602/22.png" alt="image"></p>
+<p>我们可以看到，全连接层其实就是将多维特征图展开成一维，为什么要这么做呢，我们来看下面几张图:<br><img src="/uploads/20180602/23.png" alt="image"><br><img src="/uploads/20180602/24.png" alt="image"><br><img src="/uploads/20180602/25.png" alt="image"></p>
+<p>他们都是猫但猫的位置和角度都不同，那么输入矩阵和特征矩阵肯定也是不一样的，但是我们的神经网络还是能识别出来，这就是全连接层做的，全连接层实际上呢识别前面提取到的特征进行组合，也就是说含有一维特征集中只要含有某些特征，就判断成猫，跟它的位置没有关系。</p>
+<h2 id="输出层与softmax函数"><a href="#输出层与softmax函数" class="headerlink" title="输出层与softmax函数"></a>输出层与softmax函数</h2><p><img src="/uploads/20180602/26.png" alt="image">  </p>
+<p>输出层神经元个数是与类别个数相一致的，因为我们的网络最终要依靠输出层的值来判断类别，但是输出层输出数值啊，如何根据数值判断类别呢，答案就是把数值转化成概率，概率大的类别即为神经网络最终的输出，这就是softmax函数的作用啦。</p>
+<p>好了，到这里，整个神经网络的基本结构就介绍完了，慢着是不是感觉还缺少点什么，我们的神经网络是不是还是有点简单呢，对了，少了个激活函数啊。</p>
+<h2 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h2><p>在卷积层输出，一般会加上个激活函数，激活函数是用来干什么的呢<br>一句话，激活函数是用来加入非线性因素的，因为线性模型的表达能力不够。</p>
+<hr>
+<p>这是个单层的感知机，显而易见的是，它只能执行线性分类任务，</p>
+<p><img src="/uploads/20180602/27.jpg" alt="image"><br><img src="/uploads/20180602/06.png" alt="image"></p>
+<p>这时候，我们加入激活函数，使其具有非线性分类的能力，<br><img src="/uploads/20180602/28.jpg" alt="image"></p>
+<p>不知道各位看到这里想到了什么，很像SVN里面的核函数对不对，对了，他们的作用是一样的，引入非线性因素。</p>
+<p>值得注意的是激活函数一般放在卷积层的输出，主要的激活函数有tanh, sigmoid和reLu等。</p>
+<h1 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h1><p>模型训练其实就是调参，所有参数初始阶段都是随机的，后面根据输出值和目标值之间的差值进行误差反向传播来调整参数值，详细介绍见<a href="../../02/一文带你看懂BP神经网络/">BP神经网络</a></p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>以上我们介绍的只是卷积神经网络的基本结构，实际上卷积核数量和其他各层数量，理论上都是可以任意添加的，这个可以根据具体任务来确定。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="玉米 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫关注我的公众号</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/02/一文带你看懂BP神经网络/" rel="next" title="一文带你看懂BP神经网络">
+                <i class="fa fa-chevron-left"></i> 一文带你看懂BP神经网络
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/03/图像的卷积/" rel="prev" title="图像的卷积">
+                图像的卷积 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjg5NC8xMzQzMA=="></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.jpg"
+                alt="玉米" />
+            
+              <p class="site-author-name" itemprop="name">玉米</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/yumicode" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:laiyuminchn@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/5297636313" target="_blank" title="weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#why-CNN"><span class="nav-number">2.</span> <span class="nav-text">why CNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CNN基本结构"><span class="nav-number">3.</span> <span class="nav-text">CNN基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#卷积层"><span class="nav-number">3.1.</span> <span class="nav-text">卷积层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#池化层"><span class="nav-number">3.2.</span> <span class="nav-text">池化层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全连接层"><span class="nav-number">3.3.</span> <span class="nav-text">全连接层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出层与softmax函数"><span class="nav-number">3.4.</span> <span class="nav-text">输出层与softmax函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#激活函数"><span class="nav-number">3.5.</span> <span class="nav-text">激活函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型训练"><span class="nav-number">4.</span> <span class="nav-text">模型训练</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">玉米</span>
+
+  
+</div>
+
+
+  <div class="powered-by">我的<a class="theme-link" target="_blank" href="https://weibo.com/u/5297636313">微博</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">我的<a class="theme-link" target="_blank" href="https://github.com/yumicode">github</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
