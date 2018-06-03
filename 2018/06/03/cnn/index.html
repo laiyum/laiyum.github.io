@@ -102,7 +102,7 @@
 <meta property="og:image" content="http://yumicode.github.io/uploads/20180602/27.jpg">
 <meta property="og:image" content="http://yumicode.github.io/uploads/20180602/06.png">
 <meta property="og:image" content="http://yumicode.github.io/uploads/20180602/28.jpg">
-<meta property="og:updated_time" content="2018-06-02T18:16:22.923Z">
+<meta property="og:updated_time" content="2018-06-03T10:34:57.065Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="卷积神经网络（CNN）详解">
 <meta name="twitter:description" content="前言卷积神经网络（CNN）是一种著名的深度学习模型，其名称的由来是因为卷积运算被引入到了这种模型中，CNN可以归类为多层前馈神经网络模型（BP神经网络模型）在计算机视觉领域中得到了非常广泛的应用，例如图像分类、目标检测及跟踪等。下面，将详细介绍CNN的基本原理。">
@@ -350,7 +350,7 @@
 <hr>
 <a id="more"></a>
 <h1 id="why-CNN"><a href="#why-CNN" class="headerlink" title="why CNN"></a>why CNN</h1><p>CNN的输入是二维模型，所以利于处理图像视频的高维数据，同时由于其不用手动提取特征，使得在实际应用中可以大展身手，不过由于模型中所需参数极多，对计算机的计算力要求较高，加上训练模型所需要的数据量很大，所以在上世纪九十年代提出之后，基本没有得到大规模应用。随着大数据时代的到来，在高性能计算平台上用大规模的数据集训练复杂模型，成为了可能，正是在这种背景下，卷积神经网络开始蓬勃发展</p>
-<h1 id="CNN基本结构"><a href="#CNN基本结构" class="headerlink" title="CNN基本结构"></a>CNN基本结构</h1><p><strong>卷积神经网络</strong>顾名思义就是：卷积+神经网络，前面的博客中我已经详细介绍了图像的卷积和BP神经网络，所以阅读这篇博客的读者，我就默认你们已经阅读过了前面的内容，还木有了解的小伙伴赶快点击上面链接。<br>先来看一下CNN的基本结构：<br><img src="/uploads/20180602/15.png" alt="image">  </p>
+<h1 id="CNN基本结构"><a href="#CNN基本结构" class="headerlink" title="CNN基本结构"></a>CNN基本结构</h1><p><strong>卷积神经网络</strong>顾名思义就是：卷积+神经网络，前面的博客中我已经详细介绍了<a href="../图像的卷积/">图像卷积</a>和<a href="../../02/一文带你看懂BP神经网络/">BP神经网络</a>，所以阅读这篇博客的读者，我就默认你们已经阅读过了前面的内容，还木有了解的小伙伴赶快点击上面链接。<br>先来看一下CNN的基本结构：<br><img src="/uploads/20180602/15.png" alt="image">  </p>
 <p>主要有卷积层，池化层，全连接层，输出层，另外还涉及两个函数，激活函数和softmax函数，下面将一一进行介绍。</p>
 <h2 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h2><p><img src="/uploads/20180602/19.png" alt="image">  </p>
 <p>我们知道传统的机器学习方法中，我们要手动进行特征选择和特征提取，而在CNN中是不需要我们提取特征，CNN会自动进行特征提取，那么CNN是怎么做到的呢，对了，特征提取的工作就由卷积层负责。我们在<a href="../图像的卷积/">图像卷积</a>那里提到，卷积其实就是滤波，滤波和神经网络又有什么关系呢？我们设想一下，如要识别图像中某种特定曲线，是不是就要用滤波器将其他曲线信号给抑制，让这种曲线经过滤波器时有很高的输出，这其实就是卷积层的特征提取过程了（详细过程见图像的卷积）这种滤波器，我们称为卷积核，一个卷积核只负责提取一种特征，卷积层一般又多个卷积核组成。  其过程动图如下：   </p>
