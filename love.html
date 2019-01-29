@@ -1,7 +1,7 @@
 z<!DOCTYPE html>
 <html>
 <head>
-	<title>小仙女同学</title>
+	<title>李小颖同学</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -23,7 +23,7 @@ z<!DOCTYPE html>
 		function no_btn(){
 			var yes = document.getElementById('music');
 			if(!yes.paused)
-				alert('姑娘，你已经是我的人了，不能反悔');
+				alert('李姑娘，你已经是我的人了，不能反悔');
 			else{
 				i=i%6;
 				// if(i==6)
@@ -34,9 +34,10 @@ z<!DOCTYPE html>
 					"工资上交",
 					"家务全包",
 					"带你吃肉肉",
-					"听你唱歌，陪你作画",
-					"与你看遍山河大海",
-					"小仙女，我真的喜欢你啊",
+					"我家有柴犬",
+					"我家有葡萄",
+					"带你看遍山河大海",
+					"李小颖，我真的喜欢你啊",
 				];
 				alert(alert1[i]);
 				i++;
@@ -47,13 +48,13 @@ z<!DOCTYPE html>
 	<div id="main">
 		<div id="question">
 			<center>
-				<p>小仙女同学，嫁给玉米好吗</p>
+				<p>李小颖，嫁给我？</p>
 				<input type="button" id="sure" onclick="sure_btn()" value="好" >
 				<input type="button" id="no" onclick="no_btn()" value="不好" >
 			</center>
 		</div>
 		<div id="answer">
-			<audio id="music" src="./res/musics/Ashley.m4a" hidden="true" loop="true" ></audio>
+			<audio id="music" src="./res/musics/lhy.mp3" hidden="true" loop="true" ></audio>
 			<!-- <img src="./res/images/7.png" id="image"> -->
 		</div>
 	</div>
