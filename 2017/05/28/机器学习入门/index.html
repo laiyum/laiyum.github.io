@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="机器学习,神经网络," />
+  <meta name="keywords" content="机器学习,编程," />
 
 
 
@@ -79,27 +79,27 @@
 
 
 
-<meta name="description" content="前言所谓BP神经网络，即前向反馈神经网络。我相信大多数人深度学习都是从神经网络开始的，本文将带大家了解神经网络基本模型结构，并详细介绍神经网络中最重要的算法，BP算法。">
-<meta name="keywords" content="机器学习,神经网络">
+<meta name="description" content="前言近年来，机器学习人工智能领域大热，本文也来蹭蹭热点，接下来将为大家理清机器学习相关概念，介绍机器学习的主要方法">
+<meta name="keywords" content="机器学习,编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="一文带你看懂BP神经网络">
-<meta property="og:url" content="http://laiyum.github.io/2018/06/02/一文带你看懂BP神经网络/index.html">
+<meta property="og:title" content="机器学习入门">
+<meta property="og:url" content="http://laiyum.github.io/2017/05/28/机器学习入门/index.html">
 <meta property="og:site_name" content="玉米的博客">
-<meta property="og:description" content="前言所谓BP神经网络，即前向反馈神经网络。我相信大多数人深度学习都是从神经网络开始的，本文将带大家了解神经网络基本模型结构，并详细介绍神经网络中最重要的算法，BP算法。">
+<meta property="og:description" content="前言近年来，机器学习人工智能领域大热，本文也来蹭蹭热点，接下来将为大家理清机器学习相关概念，介绍机器学习的主要方法">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/08.jpg">
-<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/09.jpg">
-<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/10.png">
-<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/11.jpg">
-<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/07.png">
-<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/12.jpg">
-<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/13.jpg">
-<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/14.jpg">
-<meta property="og:updated_time" content="2018-06-02T16:14:54.539Z">
+<meta property="og:image" content="http://laiyum.github.io/uploads/18052801.jpg">
+<meta property="og:image" content="http://laiyum.github.io/uploads/18052802.jpg">
+<meta property="og:image" content="http://laiyum.github.io/uploads/18052803.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/18052808.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/18052804.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/18052805.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/18052806.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/18052807.png">
+<meta property="og:updated_time" content="2019-07-08T13:50:29.145Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="一文带你看懂BP神经网络">
-<meta name="twitter:description" content="前言所谓BP神经网络，即前向反馈神经网络。我相信大多数人深度学习都是从神经网络开始的，本文将带大家了解神经网络基本模型结构，并详细介绍神经网络中最重要的算法，BP算法。">
-<meta name="twitter:image" content="http://laiyum.github.io/uploads/20180602/08.jpg">
+<meta name="twitter:title" content="机器学习入门">
+<meta name="twitter:description" content="前言近年来，机器学习人工智能领域大热，本文也来蹭蹭热点，接下来将为大家理清机器学习相关概念，介绍机器学习的主要方法">
+<meta name="twitter:image" content="http://laiyum.github.io/uploads/18052801.jpg">
 
 
 
@@ -129,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://laiyum.github.io/2018/06/02/一文带你看懂BP神经网络/"/>
+  <link rel="canonical" href="http://laiyum.github.io/2017/05/28/机器学习入门/"/>
 
 
 
 
 
-  <title>一文带你看懂BP神经网络 | 玉米的博客</title>
+  <title>机器学习入门 | 玉米的博客</title>
   
 
 
@@ -272,7 +272,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://laiyum.github.io/2018/06/02/一文带你看懂BP神经网络/">
+    <link itemprop="mainEntityOfPage" href="http://laiyum.github.io/2017/05/28/机器学习入门/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="玉米">
@@ -289,7 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">一文带你看懂BP神经网络</h1>
+          <h1 class="post-title" itemprop="name headline">机器学习入门</h1>
         
 
         <div class="post-meta">
@@ -301,8 +301,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-02T23:57:36+08:00">
-                2018-06-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-28T19:24:50+08:00">
+                2017-05-28
               </time>
             
 
@@ -339,18 +339,34 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>所谓BP神经网络，即前向反馈神经网络。我相信大多数人深度学习都是从神经网络开始的，本文将带大家了解神经网络基本模型结构，并详细介绍神经网络中最重要的算法，BP算法。<br><a id="more"></a></p>
-<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><p>我们先来看一下一个经典的神经网络结构模型：<br><img src="/uploads/20180602/08.jpg" alt="image"><br>由三层神经元组成，好，图先放着，它的具体结构和工作原理，且听我慢慢道来。</p>
-<h2 id="神经元模型"><a href="#神经元模型" class="headerlink" title="神经元模型"></a>神经元模型</h2><p>神经元神经网络中最基础的组成成分，结构如下图所示<br><img src="/uploads/20180602/09.jpg" alt="image"></p>
-<p><strong>连接</strong> 是神经元中最重要的部分，神经网络训练，就是调整连接上的权值，使得输出尽量接近目标值，在图中，神经元输出之前还要经过一个激活函数，负责将值转换成0或1，理想的激活函数是阶跃函数，但由于其不连续，不光滑，故而一般采用的是sigmod函数，如下图所示<br><img src="/uploads/20180602/10.png" alt="image"></p>
-<p>神经元计算公式如下 : <strong>y=sgn(w*x+b)</strong>,其中w为权值，b为偏置，是神经元的阈值。</p>
-<h2 id="感知机与多层网络"><a href="#感知机与多层网络" class="headerlink" title="感知机与多层网络"></a>感知机与多层网络</h2><p>多个神经元按一定层级组织起来就形成了神经网络。<br><img src="/uploads/20180602/11.jpg" alt="image"><br>值得注意的是每一层神经元之间都是全连接。<br>感知机的公式可以用如下公式表示：<br><img src="/uploads/20180602/07.png" alt="image"></p>
-<h1 id="BP算法"><a href="#BP算法" class="headerlink" title="BP算法"></a>BP算法</h1><p>好，神经网络我们搭建好了，怎么样来训练参数呢，就要用到这个BP算法，即误差反向传播算法。<br>其核心就是一句话：链式求导法则应用求误差最小值<br>具体过程如下：这里为了简单，先忽略激活函数<br>1.正向传播<br><img src="/uploads/20180602/12.jpg" alt="image">  </p>
-<p>2.误差反向传播<br><img src="/uploads/20180602/13.jpg" alt="image">  </p>
-<p>3.权值更新<br><img src="/uploads/20180602/14.jpg" alt="image"><br>为什么要对W1进行权值更新呢，因为误差是关于W1的函数，要降低误差就要对W1进行更新。<br>注意：权值更新这里涉及梯度下降，欢迎阅读了解详细  </p>
-<p>4.重复123</p>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>作为神经网络的精髓，本文详细介绍了BP算法过程，由于还不会用LaTeX，采用手写，后面将使用LaTeX更新这些公式。</p>
-<p>参考：<a href="https://www.cnblogs.com/charlotte77/p/5629865.html" target="_blank" rel="noopener">https://www.cnblogs.com/charlotte77/p/5629865.html</a></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近年来，机器学习人工智能领域大热，本文也来蹭蹭热点，接下来将为大家理清机器学习相关概念，介绍机器学习的主要方法</p>
+<hr>
+<a id="more"></a>
+<h1 id="机器学习概念"><a href="#机器学习概念" class="headerlink" title="机器学习概念"></a>机器学习概念</h1><h2 id="什么是机器学习"><a href="#什么是机器学习" class="headerlink" title="什么是机器学习"></a>什么是机器学习</h2><p>我们通常在计算机编程的时候，都是已知输入，然后通过一定的算法产生输出，如下图所示：  </p>
+<p><img src="/uploads/18052801.jpg" alt="image">  </p>
+<p>而还有一种情况呢，我们知道了输入和输出，但是却不知道中间的算法，这时候就需要用机器学习通过观察输入输出来学习这个算法，我们叫做知识，然后用学到的知识通过新的输入来产生输出。简而言之<strong>机器学习是用来寻找输入输出间的映射关系的</strong><br><img src="/uploads/18052802.jpg" alt="image">  </p>
+<p>其实我们人在学习思考时，脑子里也有这么个映射过程，当我们看到猫的图片，在脑子里产生了映射，于是乎，就说出了猫这个词，所以呢<strong>机器学习就是让计算机和人一样思考</strong></p>
+<p> <img src="/uploads/18052803.png" alt="image"></p>
+<h2 id="机器学习相关概念的区别"><a href="#机器学习相关概念的区别" class="headerlink" title="机器学习相关概念的区别"></a>机器学习相关概念的区别</h2><p>在谈到机器学习时，我们经常会听到下面几个概念：数据挖掘，人工智能等等，那他们之间有什么联系呢？我们先来看看下面的这幅图：  </p>
+<p><img src="/uploads/18052808.png" alt="image"></p>
+<p>也就是说机器学习是数据挖掘它们的底层，机器学习给它们提供算法，数据挖掘则是机器学习的应用。</p>
+<h2 id="机器学习的应用"><a href="#机器学习的应用" class="headerlink" title="机器学习的应用"></a>机器学习的应用</h2><p>像我们熟知的Apple的faceID，google的AlphaGo，MicroSoft的小娜都是机器学习的典型应用</p>
+<h1 id="机器学习方法"><a href="#机器学习方法" class="headerlink" title="机器学习方法"></a>机器学习方法</h1><p> 实现机器学习有多种方法，这里方法是我们通常所说的算法，主要有下面几种：</p>
+<h2 id="监督学习方法"><a href="#监督学习方法" class="headerlink" title="监督学习方法"></a>监督学习方法</h2><p>所谓监督学习方法就是说随便给一堆数据和数据对应的标签，计算机在学习之后能根据新的输入数据判断它们对应的标签。 </p>
+<p>举个例子，我们给计算机一大堆猫狗的图片，并告诉它，哪些是狗，哪些是猫，计算机学习之后，再给它看猫和狗的图片，它就能告诉我们哪些是狗，哪些是猫。</p>
+<p><img src="/uploads/18052804.png" alt="image">  </p>
+<p><img src="/uploads/18052805.png" alt="image"></p>
+<p>监督学习方法用于分类和回归，我们熟知的神经网络就是一种监督学习方法。</p>
+<h2 id="非监督学习方法"><a href="#非监督学习方法" class="headerlink" title="非监督学习方法"></a>非监督学习方法</h2><p>我们有的时候只给计算机数据，不给计算机对应的标签，计算机能通过观察数据之间的规率进行数据归类<br>还是上面的例子，我们这次不告诉计算机哪些是狗，哪些是猫，计算机学习之后能把他们归类出来。  </p>
+<p><img src="/uploads/18052806.png" alt="image"></p>
+<p>非监督学习用于聚类，如k-means算法</p>
+<h2 id="半监督学习方法"><a href="#半监督学习方法" class="headerlink" title="半监督学习方法"></a>半监督学习方法</h2><p>半监督学习方法综合了监督学习和非监督学习两种方法。在初始阶段给计算机一些有标签的数据和大量没有标签的数据，计算机学习后能进行归类<br>半监督学习用于训练更高效更准确的模型，因为它既避免了带标签的数据少而的模型过拟合，也减少了打标签的工作量。  </p>
+<h2 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h2><p>强化学习是学习一个最优策略，可以让本体在特定环境中，根据当前的状态，做出行动，从而获得最大奖励。  </p>
+<p>来个新例子，这次，我们让计算机打篮球，我们并不需要告诉计算机怎么打篮球，我们只需要给它个篮球，让它自己打，然后我们对计算机打分，进球分越高，打分越高，这里的打分就是上面的奖励，每次计算机要做的就是获得最大奖励，一开始，面对陌生的环境，计算机并不知道怎么进球，经过奖励刺激后，命中率就会越来越高。  </p>
+<p><img src="/uploads/18052807.png" alt="image"></p>
+<p>google的AlphaZero便是强化学习的典型应用</p>
+<h2 id="遗传算法"><a href="#遗传算法" class="headerlink" title="遗传算法"></a>遗传算法</h2><p>模拟自然界优胜劣汰的进化现象，把搜索空间（问题解的组成空间）映射为遗传空间，把可能的解编码成一个向量——染色体，向量的每个元素称为基因。通过不断计算各染色体的适应值，选择最好的染色体，获得最优解。</p>
+<p>还是拿上面的例子来说，先训练出两个打篮球的计算机ai，让这两个aic重组，变异产生后代种群，挑出最会打篮球的再进行重组变异，如此循环，每次挑出最强的</p>
 
       
     </div>
@@ -378,7 +394,7 @@
           
             <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
           
-            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
+            <a href="/tags/编程/" rel="tag"># 编程</a>
           
         </div>
       
@@ -391,18 +407,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/05/28/机器学习入门/" rel="next" title="机器学习入门">
-                <i class="fa fa-chevron-left"></i> 机器学习入门
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/03/cnn/" rel="prev" title="卷积神经网络（CNN）详解">
-                卷积神经网络（CNN）详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/02/一文带你看懂BP神经网络/" rel="prev" title="一文带你看懂BP神经网络">
+                一文带你看懂BP神经网络 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -557,7 +569,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#神经网络"><span class="nav-number">2.</span> <span class="nav-text">神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#神经元模型"><span class="nav-number">2.1.</span> <span class="nav-text">神经元模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感知机与多层网络"><span class="nav-number">2.2.</span> <span class="nav-text">感知机与多层网络</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BP算法"><span class="nav-number">3.</span> <span class="nav-text">BP算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#机器学习概念"><span class="nav-number">2.</span> <span class="nav-text">机器学习概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是机器学习"><span class="nav-number">2.1.</span> <span class="nav-text">什么是机器学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习相关概念的区别"><span class="nav-number">2.2.</span> <span class="nav-text">机器学习相关概念的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习的应用"><span class="nav-number">2.3.</span> <span class="nav-text">机器学习的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#机器学习方法"><span class="nav-number">3.</span> <span class="nav-text">机器学习方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#监督学习方法"><span class="nav-number">3.1.</span> <span class="nav-text">监督学习方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非监督学习方法"><span class="nav-number">3.2.</span> <span class="nav-text">非监督学习方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#半监督学习方法"><span class="nav-number">3.3.</span> <span class="nav-text">半监督学习方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强化学习"><span class="nav-number">3.4.</span> <span class="nav-text">强化学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遗传算法"><span class="nav-number">3.5.</span> <span class="nav-text">遗传算法</span></a></li></ol></li></ol></div>
             
 
           </div>
