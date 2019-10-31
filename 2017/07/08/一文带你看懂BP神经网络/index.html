@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="机器学习,神经网络," />
 
 
 
@@ -79,13 +79,27 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="玉米的博客">
-<meta property="og:url" content="http://laiyum.github.io/index.html">
+<meta name="description" content="前言所谓BP神经网络，即前向反馈神经网络。我相信大多数人深度学习都是从神经网络开始的，本文将带大家了解神经网络基本模型结构，并详细介绍神经网络中最重要的算法，BP算法。">
+<meta name="keywords" content="机器学习,神经网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一文带你看懂BP神经网络">
+<meta property="og:url" content="http://laiyum.github.io/2017/07/08/一文带你看懂BP神经网络/index.html">
 <meta property="og:site_name" content="玉米的博客">
+<meta property="og:description" content="前言所谓BP神经网络，即前向反馈神经网络。我相信大多数人深度学习都是从神经网络开始的，本文将带大家了解神经网络基本模型结构，并详细介绍神经网络中最重要的算法，BP算法。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/08.jpg">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/09.jpg">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/10.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/11.jpg">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/07.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/12.jpg">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/13.jpg">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/14.jpg">
+<meta property="og:updated_time" content="2019-07-08T14:04:47.882Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="玉米的博客">
+<meta name="twitter:title" content="一文带你看懂BP神经网络">
+<meta name="twitter:description" content="前言所谓BP神经网络，即前向反馈神经网络。我相信大多数人深度学习都是从神经网络开始的，本文将带大家了解神经网络基本模型结构，并详细介绍神经网络中最重要的算法，BP算法。">
+<meta name="twitter:image" content="http://laiyum.github.io/uploads/20180602/08.jpg">
 
 
 
@@ -115,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://laiyum.github.io/"/>
+  <link rel="canonical" href="http://laiyum.github.io/2017/07/08/一文带你看懂BP神经网络/"/>
 
 
 
 
 
-  <title>玉米的博客</title>
+  <title>一文带你看懂BP神经网络 | 玉米的博客</title>
   
 
 
@@ -150,8 +164,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,9 +257,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -276,9 +289,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/08/一文带你看懂BP神经网络/" itemprop="url">一文带你看懂BP神经网络</a></h1>
+          <h1 class="post-title" itemprop="name headline">一文带你看懂BP神经网络</h1>
         
 
         <div class="post-meta">
@@ -328,22 +339,33 @@
       
 
       
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>所谓BP神经网络，即前向反馈神经网络。我相信大多数人深度学习都是从神经网络开始的，本文将带大家了解神经网络基本模型结构，并详细介绍神经网络中最重要的算法，BP算法。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/08/一文带你看懂BP神经网络/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>所谓BP神经网络，即前向反馈神经网络。我相信大多数人深度学习都是从神经网络开始的，本文将带大家了解神经网络基本模型结构，并详细介绍神经网络中最重要的算法，BP算法。<br><a id="more"></a></p>
+<h1 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h1><p>我们先来看一下一个经典的神经网络结构模型：<br><img src="/uploads/20180602/08.jpg" alt="image"><br>由三层神经元组成，好，图先放着，它的具体结构和工作原理，且听我慢慢道来。</p>
+<h2 id="神经元模型"><a href="#神经元模型" class="headerlink" title="神经元模型"></a>神经元模型</h2><p>神经元神经网络中最基础的组成成分，结构如下图所示<br><img src="/uploads/20180602/09.jpg" alt="image"></p>
+<p><strong>连接</strong> 是神经元中最重要的部分，神经网络训练，就是调整连接上的权值，使得输出尽量接近目标值，在图中，神经元输出之前还要经过一个激活函数，负责将值转换成0或1，理想的激活函数是阶跃函数，但由于其不连续，不光滑，故而一般采用的是sigmod函数，如下图所示<br><img src="/uploads/20180602/10.png" alt="image"></p>
+<p>神经元计算公式如下 : <strong>y=sgn(w*x+b)</strong>,其中w为权值，b为偏置，是神经元的阈值。</p>
+<h2 id="感知机与多层网络"><a href="#感知机与多层网络" class="headerlink" title="感知机与多层网络"></a>感知机与多层网络</h2><p>多个神经元按一定层级组织起来就形成了神经网络。<br><img src="/uploads/20180602/11.jpg" alt="image"><br>值得注意的是每一层神经元之间都是全连接。<br>感知机的公式可以用如下公式表示：<br><img src="/uploads/20180602/07.png" alt="image"></p>
+<h1 id="BP算法"><a href="#BP算法" class="headerlink" title="BP算法"></a>BP算法</h1><p>好，神经网络我们搭建好了，怎么样来训练参数呢，就要用到这个BP算法，即误差反向传播算法。<br>其核心就是一句话：链式求导法则应用求误差最小值<br>具体过程如下：这里为了简单，先忽略激活函数<br>1.正向传播<br><img src="/uploads/20180602/12.jpg" alt="image">  </p>
+<p>2.误差反向传播<br><img src="/uploads/20180602/13.jpg" alt="image">  </p>
+<p>3.权值更新<br><img src="/uploads/20180602/14.jpg" alt="image"><br>为什么要对W1进行权值更新呢，因为误差是关于W1的函数，要降低误差就要对W1进行更新。<br>注意：权值更新这里涉及梯度下降，欢迎阅读了解详细  </p>
+<p>4.重复123</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>作为神经网络的精髓，本文详细介绍了BP算法过程，由于还不会用LaTeX，采用手写，后面将使用LaTeX更新这些公式。</p>
+<p>参考：<a href="https://www.cnblogs.com/charlotte77/p/5629865.html" target="_blank" rel="noopener">https://www.cnblogs.com/charlotte77/p/5629865.html</a></p>
+
       
     </div>
     
     
     
 
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="玉米 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫关注我的公众号</div>
+</div>
+
+      </div>
     
 
     
@@ -352,264 +374,38 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://laiyum.github.io/2017/06/27/图像的卷积/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="玉米">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玉米的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/27/图像的卷积/" itemprop="url">图像的卷积</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-27T01:56:47+08:00">
-                2017-06-27
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
           
-            
+            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
           
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>说到卷积，我想大多数人想到的是信号系统里面的卷积还有傅里叶变换，没错图像的卷积和信号系统里面的卷积非常类似，只不过前者是空间域上的，后者是时间域上的。看到卷积傅里叶，大家就本能的头疼对不对，没关系，本文将尽量摈弃复杂的数学公式，力求通俗易懂的解释图像的卷积。</p>
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/27/图像的卷积/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/27/图像的卷积/" rel="next" title="图像的卷积">
+                <i class="fa fa-chevron-left"></i> 图像的卷积
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://laiyum.github.io/2017/06/15/cnn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="玉米">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玉米的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/15/cnn/" itemprop="url">卷积神经网络（CNN）详解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-15T01:21:25+08:00">
-                2017-06-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>卷积神经网络（CNN）是一种著名的深度学习模型，其名称的由来是因为卷积运算被引入到了这种模型中，CNN可以归类为多层前馈神经网络模型（BP神经网络模型）在计算机视觉领域中得到了非常广泛的应用，例如图像分类、目标检测及跟踪等。下面，将详细介绍CNN的基本原理。</p>
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/15/cnn/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -619,135 +415,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://laiyum.github.io/2017/05/28/机器学习入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="玉米">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玉米的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/28/机器学习入门/" itemprop="url">机器学习入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-28T19:24:50+08:00">
-                2017-05-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近年来，机器学习人工智能领域大热，本文也来蹭蹭热点，接下来将为大家理清机器学习相关概念，介绍机器学习的主要方法</p>
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/28/机器学习入门/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -755,6 +427,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjg5NC8xMzQzMA=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -775,8 +456,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -853,6 +543,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#神经网络"><span class="nav-number">2.</span> <span class="nav-text">神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#神经元模型"><span class="nav-number">2.1.</span> <span class="nav-text">神经元模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感知机与多层网络"><span class="nav-number">2.2.</span> <span class="nav-text">感知机与多层网络</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#BP算法"><span class="nav-number">3.</span> <span class="nav-text">BP算法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -986,6 +692,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1014,6 +724,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

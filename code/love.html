@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>李小颖同学</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	 <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+<body>
+	<script>
+		var i = 0;
+		// var image = document.getElementById('image');
+		
+		function sure_btn(){
+			var yes = document.getElementById('music');
+			yes.play();
+			alert("此后余生，请多指教");
+			// var path = "./res/images/";
+			// path = path + "8.gif";
+			// image.src=path;
+		}
+
+		function no_btn(){
+			var yes = document.getElementById('music');
+			if(!yes.paused)
+				alert('小宝宝，你已经是我的人了，不能反悔');
+			else{
+				i=i%6;
+				// if(i==6)
+				// 	i=0;
+				// path = "./res/images/"+(i+1)%6+".gif";
+				// image.src = path;
+				var alert1=[
+					"工资上交",
+					"家务全包",
+					"带你吃肉肉",
+					"听你唱歌，陪你作画",
+					"与你看遍山河大海",
+					"李小颖，我真的爱你啊",
+				];
+				alert(alert1[i]);
+				i++;
+			}
+		}
+
+	</script>
+	<div id="main">
+		<div id="question">
+			<center>
+				<p>李小颖同学，嫁给我好吗</p>
+				<input type="button" id="sure" onclick="sure_btn()" value="好" >
+				<input type="button" id="no" onclick="no_btn()" value="不好" >
+			</center>
+		</div>
+		<div id="answer">
+			<audio id="music" src="./res/musics/Ashley.m4a" hidden="true" loop="true" ></audio>
+			<!-- <img src="./res/images/7.png" id="image"> -->
+		</div>
+	</div>
+
+</body>
+</html>

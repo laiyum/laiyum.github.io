@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="神经网络,图像处理," />
 
 
 
@@ -79,13 +79,30 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="玉米的博客">
-<meta property="og:url" content="http://laiyum.github.io/index.html">
+<meta name="description" content="前言说到卷积，我想大多数人想到的是信号系统里面的卷积还有傅里叶变换，没错图像的卷积和信号系统里面的卷积非常类似，只不过前者是空间域上的，后者是时间域上的。看到卷积傅里叶，大家就本能的头疼对不对，没关系，本文将尽量摈弃复杂的数学公式，力求通俗易懂的解释图像的卷积。">
+<meta name="keywords" content="神经网络,图像处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像的卷积">
+<meta property="og:url" content="http://laiyum.github.io/2017/06/27/图像的卷积/index.html">
 <meta property="og:site_name" content="玉米的博客">
+<meta property="og:description" content="前言说到卷积，我想大多数人想到的是信号系统里面的卷积还有傅里叶变换，没错图像的卷积和信号系统里面的卷积非常类似，只不过前者是空间域上的，后者是时间域上的。看到卷积傅里叶，大家就本能的头疼对不对，没关系，本文将尽量摈弃复杂的数学公式，力求通俗易懂的解释图像的卷积。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/02.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/03.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/01.gif">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/04.gif">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/29.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/30.jpg">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/31.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/32.jpg">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/33.jpg">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/34.jpg">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/35.jpg">
+<meta property="og:updated_time" content="2019-07-08T14:04:00.167Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="玉米的博客">
+<meta name="twitter:title" content="图像的卷积">
+<meta name="twitter:description" content="前言说到卷积，我想大多数人想到的是信号系统里面的卷积还有傅里叶变换，没错图像的卷积和信号系统里面的卷积非常类似，只不过前者是空间域上的，后者是时间域上的。看到卷积傅里叶，大家就本能的头疼对不对，没关系，本文将尽量摈弃复杂的数学公式，力求通俗易懂的解释图像的卷积。">
+<meta name="twitter:image" content="http://laiyum.github.io/uploads/20180602/02.png">
 
 
 
@@ -115,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://laiyum.github.io/"/>
+  <link rel="canonical" href="http://laiyum.github.io/2017/06/27/图像的卷积/"/>
 
 
 
 
 
-  <title>玉米的博客</title>
+  <title>图像的卷积 | 玉米的博客</title>
   
 
 
@@ -150,8 +167,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -244,133 +260,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://laiyum.github.io/2017/07/08/一文带你看懂BP神经网络/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="玉米">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玉米的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/07/08/一文带你看懂BP神经网络/" itemprop="url">一文带你看懂BP神经网络</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-08T23:57:36+08:00">
-                2017-07-08
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>所谓BP神经网络，即前向反馈神经网络。我相信大多数人深度学习都是从神经网络开始的，本文将带大家了解神经网络基本模型结构，并详细介绍神经网络中最重要的算法，BP算法。<br>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/07/08/一文带你看懂BP神经网络/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -400,9 +292,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/27/图像的卷积/" itemprop="url">图像的卷积</a></h1>
+          <h1 class="post-title" itemprop="name headline">图像的卷积</h1>
         
 
         <div class="post-meta">
@@ -452,23 +342,29 @@
       
 
       
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>说到卷积，我想大多数人想到的是信号系统里面的卷积还有傅里叶变换，没错图像的卷积和信号系统里面的卷积非常类似，只不过前者是空间域上的，后者是时间域上的。看到卷积傅里叶，大家就本能的头疼对不对，没关系，本文将尽量摈弃复杂的数学公式，力求通俗易懂的解释图像的卷积。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>说到卷积，我想大多数人想到的是信号系统里面的卷积还有傅里叶变换，没错图像的卷积和信号系统里面的卷积非常类似，只不过前者是空间域上的，后者是时间域上的。看到卷积傅里叶，大家就本能的头疼对不对，没关系，本文将尽量摈弃复杂的数学公式，力求通俗易懂的解释图像的卷积。</p>
 <hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/27/图像的卷积/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+<a id="more"></a>
+<h1 id="卷积介绍"><a href="#卷积介绍" class="headerlink" title="卷积介绍"></a>卷积介绍</h1><h2 id="卷积定义"><a href="#卷积定义" class="headerlink" title="卷积定义"></a>卷积定义</h2><p>我们先来看看信号系统里面的卷积：<br><img src="/uploads/20180602/02.png" alt="image"><br><img src="/uploads/20180602/03.png" alt="image"><br>其实质就是延迟加权求和，如下图所示：<br><img src="/uploads/20180602/01.gif" alt="image"></p>
+<p>我们可以看到，这是在时间域上的平移，而我们图像则是空间域上的卷积。 用一个卷积核去扫图像，图像对应部分和卷积核相乘后的矩阵求和作为新的值填充<br><img src="/uploads/20180602/04.gif" alt="image"></p>
+<h2 id="卷积与滤波"><a href="#卷积与滤波" class="headerlink" title="卷积与滤波"></a>卷积与滤波</h2><p>所谓滤波，就是消除不需要的频率成分,那么如何消除呢，我们知道傅里叶变换有个性质，时域卷积，频域相乘。<br>如图，图一和图二分别是f(t)和g(t)的频域图，图三是f(t)*g(t)的过程，频域相乘，得到图四的结果，这个例子相当于一个低通滤波器。<br><img src="/uploads/20180602/29.png" alt="image"></p>
+<h2 id="图像滤波"><a href="#图像滤波" class="headerlink" title="图像滤波"></a>图像滤波</h2><p>要解释图像的滤波，我们先要明白，图像在计算机里面表示是用二维矩阵的形式<br><img src="/uploads/20180602/30.jpg" alt="image"><br>对应像素点的位置填充的数值为该点RGB的值，而RGB有三个值，所以呢我们就有三张图，称为通道。<br><img src="/uploads/20180602/31.png" alt="image"><br>现在我们设计一个如下的滤波器，它能识别右边的曲线<br><img src="/uploads/20180602/32.jpg" alt="image"><br>假设上面的核（滤波器）按照卷积顺序沿着下图移动<br><img src="/uploads/20180602/33.jpg" alt="image"><br>那么当它移动到上面的位置时，按照矩阵操作，将这个区域的图像像素值与滤波器相乘，我们得到一个很大的值（6600）<br><img src="/uploads/20180602/34.jpg" alt="image"><br>而当这个滤波器移动到其他区域时，我们得到一个相对很小的值<br><img src="/uploads/20180602/35.jpg" alt="image"><br>如此，我们就对原图进行了一次卷积，得到的结果中，在那个特定曲线和周边区域，值就很高，在其他区域，值相对低。这就是一张激活图。对应的高值区域就是我们所要检测曲线的位置。</p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>本文介绍的图像的卷积，在卷积神经网络中具有相当大的作用，用于图像特征的提取，我在后面对<a href="../cnn/">卷积神经网络</a>也进行了详细的介绍。</p>
+
       
     </div>
     
     
     
 
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/uploads/wechat-qcode.jpg" alt="玉米 wechat" style="width: 200px; max-width: 100%;"/>
+    <div>扫一扫关注我的公众号</div>
+</div>
+
+      </div>
     
 
     
@@ -477,264 +373,42 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://laiyum.github.io/2017/06/15/cnn/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="玉米">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玉米的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/06/15/cnn/" itemprop="url">卷积神经网络（CNN）详解</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-15T01:21:25+08:00">
-                2017-06-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
           
-            
+            <a href="/tags/图像处理/" rel="tag"># 图像处理</a>
           
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>卷积神经网络（CNN）是一种著名的深度学习模型，其名称的由来是因为卷积运算被引入到了这种模型中，CNN可以归类为多层前馈神经网络模型（BP神经网络模型）在计算机视觉领域中得到了非常广泛的应用，例如图像分类、目标检测及跟踪等。下面，将详细介绍CNN的基本原理。</p>
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/06/15/cnn/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/15/cnn/" rel="next" title="卷积神经网络（CNN）详解">
+                <i class="fa fa-chevron-left"></i> 卷积神经网络（CNN）详解
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://laiyum.github.io/2017/05/28/机器学习入门/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="玉米">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玉米的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/05/28/机器学习入门/" itemprop="url">机器学习入门</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-28T19:24:50+08:00">
-                2017-05-28
-              </time>
+              <a href="/2017/07/08/一文带你看懂BP神经网络/" rel="prev" title="一文带你看懂BP神经网络">
+                一文带你看懂BP神经网络 <i class="fa fa-chevron-right"></i>
+              </a>
             
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近年来，机器学习人工智能领域大热，本文也来蹭蹭热点，接下来将为大家理清机器学习相关概念，介绍机器学习的主要方法</p>
-<hr>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/05/28/机器学习入门/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -744,10 +418,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -755,6 +430,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNjg5NC8xMzQzMA=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -775,8 +459,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -853,6 +546,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#卷积介绍"><span class="nav-number">2.</span> <span class="nav-text">卷积介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#卷积定义"><span class="nav-number">2.1.</span> <span class="nav-text">卷积定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卷积与滤波"><span class="nav-number">2.2.</span> <span class="nav-text">卷积与滤波</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像滤波"><span class="nav-number">2.3.</span> <span class="nav-text">图像滤波</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -986,6 +695,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1014,6 +727,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

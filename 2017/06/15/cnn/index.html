@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="机器学习,编程," />
+  <meta name="keywords" content="机器学习,神经网络," />
 
 
 
@@ -79,27 +79,34 @@
 
 
 
-<meta name="description" content="前言近年来，机器学习人工智能领域大热，本文也来蹭蹭热点，接下来将为大家理清机器学习相关概念，介绍机器学习的主要方法">
-<meta name="keywords" content="机器学习,编程">
+<meta name="description" content="前言卷积神经网络（CNN）是一种著名的深度学习模型，其名称的由来是因为卷积运算被引入到了这种模型中，CNN可以归类为多层前馈神经网络模型（BP神经网络模型）在计算机视觉领域中得到了非常广泛的应用，例如图像分类、目标检测及跟踪等。下面，将详细介绍CNN的基本原理。">
+<meta name="keywords" content="机器学习,神经网络">
 <meta property="og:type" content="article">
-<meta property="og:title" content="机器学习入门">
-<meta property="og:url" content="http://laiyum.github.io/2017/05/28/机器学习入门/index.html">
+<meta property="og:title" content="卷积神经网络（CNN）详解">
+<meta property="og:url" content="http://laiyum.github.io/2017/06/15/cnn/index.html">
 <meta property="og:site_name" content="玉米的博客">
-<meta property="og:description" content="前言近年来，机器学习人工智能领域大热，本文也来蹭蹭热点，接下来将为大家理清机器学习相关概念，介绍机器学习的主要方法">
+<meta property="og:description" content="前言卷积神经网络（CNN）是一种著名的深度学习模型，其名称的由来是因为卷积运算被引入到了这种模型中，CNN可以归类为多层前馈神经网络模型（BP神经网络模型）在计算机视觉领域中得到了非常广泛的应用，例如图像分类、目标检测及跟踪等。下面，将详细介绍CNN的基本原理。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://laiyum.github.io/uploads/18052801.jpg">
-<meta property="og:image" content="http://laiyum.github.io/uploads/18052802.jpg">
-<meta property="og:image" content="http://laiyum.github.io/uploads/18052803.png">
-<meta property="og:image" content="http://laiyum.github.io/uploads/18052808.png">
-<meta property="og:image" content="http://laiyum.github.io/uploads/18052804.png">
-<meta property="og:image" content="http://laiyum.github.io/uploads/18052805.png">
-<meta property="og:image" content="http://laiyum.github.io/uploads/18052806.png">
-<meta property="og:image" content="http://laiyum.github.io/uploads/18052807.png">
-<meta property="og:updated_time" content="2019-07-08T13:56:10.428Z">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/15.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/19.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/16.gif">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/17.gif">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/18.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/20.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/21.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/22.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/23.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/24.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/25.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/26.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/27.jpg">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/06.png">
+<meta property="og:image" content="http://laiyum.github.io/uploads/20180602/28.jpg">
+<meta property="og:updated_time" content="2019-07-08T14:04:04.310Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="机器学习入门">
-<meta name="twitter:description" content="前言近年来，机器学习人工智能领域大热，本文也来蹭蹭热点，接下来将为大家理清机器学习相关概念，介绍机器学习的主要方法">
-<meta name="twitter:image" content="http://laiyum.github.io/uploads/18052801.jpg">
+<meta name="twitter:title" content="卷积神经网络（CNN）详解">
+<meta name="twitter:description" content="前言卷积神经网络（CNN）是一种著名的深度学习模型，其名称的由来是因为卷积运算被引入到了这种模型中，CNN可以归类为多层前馈神经网络模型（BP神经网络模型）在计算机视觉领域中得到了非常广泛的应用，例如图像分类、目标检测及跟踪等。下面，将详细介绍CNN的基本原理。">
+<meta name="twitter:image" content="http://laiyum.github.io/uploads/20180602/15.png">
 
 
 
@@ -129,13 +136,13 @@
 
 
 
-  <link rel="canonical" href="http://laiyum.github.io/2017/05/28/机器学习入门/"/>
+  <link rel="canonical" href="http://laiyum.github.io/2017/06/15/cnn/"/>
 
 
 
 
 
-  <title>机器学习入门 | 玉米的博客</title>
+  <title>卷积神经网络（CNN）详解 | 玉米的博客</title>
   
 
 
@@ -272,7 +279,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://laiyum.github.io/2017/05/28/机器学习入门/">
+    <link itemprop="mainEntityOfPage" href="http://laiyum.github.io/2017/06/15/cnn/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="玉米">
@@ -289,7 +296,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">机器学习入门</h1>
+          <h1 class="post-title" itemprop="name headline">卷积神经网络（CNN）详解</h1>
         
 
         <div class="post-meta">
@@ -301,8 +308,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-28T19:24:50+08:00">
-                2017-05-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-15T01:21:25+08:00">
+                2017-06-15
               </time>
             
 
@@ -339,34 +346,32 @@
       
 
       
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>近年来，机器学习人工智能领域大热，本文也来蹭蹭热点，接下来将为大家理清机器学习相关概念，介绍机器学习的主要方法</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>卷积神经网络（CNN）是一种著名的深度学习模型，其名称的由来是因为卷积运算被引入到了这种模型中，CNN可以归类为多层前馈神经网络模型（BP神经网络模型）在计算机视觉领域中得到了非常广泛的应用，例如图像分类、目标检测及跟踪等。下面，将详细介绍CNN的基本原理。</p>
 <hr>
 <a id="more"></a>
-<h1 id="机器学习概念"><a href="#机器学习概念" class="headerlink" title="机器学习概念"></a>机器学习概念</h1><h2 id="什么是机器学习"><a href="#什么是机器学习" class="headerlink" title="什么是机器学习"></a>什么是机器学习</h2><p>我们通常在计算机编程的时候，都是已知输入，然后通过一定的算法产生输出，如下图所示：  </p>
-<p><img src="/uploads/18052801.jpg" alt="image">  </p>
-<p>而还有一种情况呢，我们知道了输入和输出，但是却不知道中间的算法，这时候就需要用机器学习通过观察输入输出来学习这个算法，我们叫做知识，然后用学到的知识通过新的输入来产生输出。简而言之<strong>机器学习是用来寻找输入输出间的映射关系的</strong><br><img src="/uploads/18052802.jpg" alt="image">  </p>
-<p>其实我们人在学习思考时，脑子里也有这么个映射过程，当我们看到猫的图片，在脑子里产生了映射，于是乎，就说出了猫这个词，所以呢<strong>机器学习就是让计算机和人一样思考</strong></p>
-<p> <img src="/uploads/18052803.png" alt="image"></p>
-<h2 id="机器学习相关概念的区别"><a href="#机器学习相关概念的区别" class="headerlink" title="机器学习相关概念的区别"></a>机器学习相关概念的区别</h2><p>在谈到机器学习时，我们经常会听到下面几个概念：数据挖掘，人工智能等等，那他们之间有什么联系呢？我们先来看看下面的这幅图：  </p>
-<p><img src="/uploads/18052808.png" alt="image"></p>
-<p>也就是说机器学习是数据挖掘它们的底层，机器学习给它们提供算法，数据挖掘则是机器学习的应用。</p>
-<h2 id="机器学习的应用"><a href="#机器学习的应用" class="headerlink" title="机器学习的应用"></a>机器学习的应用</h2><p>像我们熟知的Apple的faceID，google的AlphaGo，MicroSoft的小娜都是机器学习的典型应用</p>
-<h1 id="机器学习方法"><a href="#机器学习方法" class="headerlink" title="机器学习方法"></a>机器学习方法</h1><p> 实现机器学习有多种方法，这里方法是我们通常所说的算法，主要有下面几种：</p>
-<h2 id="监督学习方法"><a href="#监督学习方法" class="headerlink" title="监督学习方法"></a>监督学习方法</h2><p>所谓监督学习方法就是说随便给一堆数据和数据对应的标签，计算机在学习之后能根据新的输入数据判断它们对应的标签。 </p>
-<p>举个例子，我们给计算机一大堆猫狗的图片，并告诉它，哪些是狗，哪些是猫，计算机学习之后，再给它看猫和狗的图片，它就能告诉我们哪些是狗，哪些是猫。</p>
-<p><img src="/uploads/18052804.png" alt="image">  </p>
-<p><img src="/uploads/18052805.png" alt="image"></p>
-<p>监督学习方法用于分类和回归，我们熟知的神经网络就是一种监督学习方法。</p>
-<h2 id="非监督学习方法"><a href="#非监督学习方法" class="headerlink" title="非监督学习方法"></a>非监督学习方法</h2><p>我们有的时候只给计算机数据，不给计算机对应的标签，计算机能通过观察数据之间的规率进行数据归类<br>还是上面的例子，我们这次不告诉计算机哪些是狗，哪些是猫，计算机学习之后能把他们归类出来。  </p>
-<p><img src="/uploads/18052806.png" alt="image"></p>
-<p>非监督学习用于聚类，如k-means算法</p>
-<h2 id="半监督学习方法"><a href="#半监督学习方法" class="headerlink" title="半监督学习方法"></a>半监督学习方法</h2><p>半监督学习方法综合了监督学习和非监督学习两种方法。在初始阶段给计算机一些有标签的数据和大量没有标签的数据，计算机学习后能进行归类<br>半监督学习用于训练更高效更准确的模型，因为它既避免了带标签的数据少而的模型过拟合，也减少了打标签的工作量。  </p>
-<h2 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h2><p>强化学习是学习一个最优策略，可以让本体在特定环境中，根据当前的状态，做出行动，从而获得最大奖励。  </p>
-<p>来个新例子，这次，我们让计算机打篮球，我们并不需要告诉计算机怎么打篮球，我们只需要给它个篮球，让它自己打，然后我们对计算机打分，进球分越高，打分越高，这里的打分就是上面的奖励，每次计算机要做的就是获得最大奖励，一开始，面对陌生的环境，计算机并不知道怎么进球，经过奖励刺激后，命中率就会越来越高。  </p>
-<p><img src="/uploads/18052807.png" alt="image"></p>
-<p>google的AlphaZero便是强化学习的典型应用</p>
-<h2 id="遗传算法"><a href="#遗传算法" class="headerlink" title="遗传算法"></a>遗传算法</h2><p>模拟自然界优胜劣汰的进化现象，把搜索空间（问题解的组成空间）映射为遗传空间，把可能的解编码成一个向量——染色体，向量的每个元素称为基因。通过不断计算各染色体的适应值，选择最好的染色体，获得最优解。</p>
-<p>还是拿上面的例子来说，先训练出两个打篮球的计算机ai，让这两个aic重组，变异产生后代种群，挑出最会打篮球的再进行重组变异，如此循环，每次挑出最强的</p>
+<h1 id="why-CNN"><a href="#why-CNN" class="headerlink" title="why CNN"></a>why CNN</h1><p>CNN的输入是二维模型，所以利于处理图像视频的高维数据，同时由于其不用手动提取特征，使得在实际应用中可以大展身手，不过由于模型中所需参数极多，对计算机的计算力要求较高，加上训练模型所需要的数据量很大，所以在上世纪九十年代提出之后，基本没有得到大规模应用。随着大数据时代的到来，在高性能计算平台上用大规模的数据集训练复杂模型，成为了可能，正是在这种背景下，卷积神经网络开始蓬勃发展</p>
+<h1 id="CNN基本结构"><a href="#CNN基本结构" class="headerlink" title="CNN基本结构"></a>CNN基本结构</h1><p><strong>卷积神经网络</strong>顾名思义就是：卷积+神经网络，前面的博客中我已经详细介绍了<a href="../图像的卷积/">图像卷积</a>和<a href="../../02/一文带你看懂BP神经网络/">BP神经网络</a>，所以阅读这篇博客的读者，我就默认你们已经阅读过了前面的内容，还木有了解的小伙伴赶快点击上面链接。<br>先来看一下CNN的基本结构：<br><img src="/uploads/20180602/15.png" alt="image">  </p>
+<p>主要有卷积层，池化层，全连接层，输出层，另外还涉及两个函数，激活函数和softmax函数，下面将一一进行介绍。</p>
+<h2 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h2><p><img src="/uploads/20180602/19.png" alt="image">  </p>
+<p>我们知道传统的机器学习方法中，我们要手动进行特征选择和特征提取，而在CNN中是不需要我们提取特征，CNN会自动进行特征提取，那么CNN是怎么做到的呢，对了，特征提取的工作就由卷积层负责。我们在<a href="../图像的卷积/">图像卷积</a>那里提到，卷积其实就是滤波，滤波和神经网络又有什么关系呢？我们设想一下，如要识别图像中某种特定曲线，是不是就要用滤波器将其他曲线信号给抑制，让这种曲线经过滤波器时有很高的输出，这其实就是卷积层的特征提取过程了（详细过程见图像的卷积）这种滤波器，我们称为卷积核，一个卷积核只负责提取一种特征，卷积层一般又多个卷积核组成。  其过程动图如下：   </p>
+<p><img src="/uploads/20180602/16.gif" alt="image"> <img src="/uploads/20180602/17.gif" alt="image">  </p>
+<p>对于卷积层，其输入是原始图像，输出是三个通道的特征图，原始图像和特征图维数的关系如下：<br>(W−F+2P)/S+1<br>其中W:输入单元的大小（宽或高）<br>F:卷积核的大小<br>S：步幅（stride）<br>P：补零（zero-padding)的数量<br><img src="/uploads/20180602/18.png" alt="image"></p>
+<h2 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h2><p>池化层的作用用一句话概括就是：采样降维。试想一下，如果用传统神经网络的全连接方式，对于上面28X28的特征图就需要28^4个参数，这还只是一个通道的一个特征图，显而易见，我们需要先降维。先将特征图划分小区域（一般为2X2小区域），然后用区域内最大值代替此区域，这就是最大池化；或用区域均值代替，这就是均值池化。如下图所示：<br><img src="/uploads/20180602/20.png" alt="image"> <img src="/uploads/20180602/21.png" alt="image"></p>
+<h2 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h2><p>在前面，我们提到过，在传统神经网络中，我们使用的就是全连接，在卷积神经网络中，全连接层又有什么用呢？先来看全连接层的结构图：<br><img src="/uploads/20180602/22.png" alt="image"></p>
+<p>我们可以看到，全连接层其实就是将多维特征图展开成一维，为什么要这么做呢，我们来看下面几张图:<br><img src="/uploads/20180602/23.png" alt="image"><br><img src="/uploads/20180602/24.png" alt="image"><br><img src="/uploads/20180602/25.png" alt="image"></p>
+<p>他们都是猫但猫的位置和角度都不同，那么输入矩阵和特征矩阵肯定也是不一样的，但是我们的神经网络还是能识别出来，这就是全连接层做的，全连接层实际上呢识别前面提取到的特征进行组合，也就是说含有一维特征集中只要含有某些特征，就判断成猫，跟它的位置没有关系。</p>
+<h2 id="输出层与softmax函数"><a href="#输出层与softmax函数" class="headerlink" title="输出层与softmax函数"></a>输出层与softmax函数</h2><p><img src="/uploads/20180602/26.png" alt="image">  </p>
+<p>输出层神经元个数是与类别个数相一致的，因为我们的网络最终要依靠输出层的值来判断类别，但是输出层输出数值啊，如何根据数值判断类别呢，答案就是把数值转化成概率，概率大的类别即为神经网络最终的输出，这就是softmax函数的作用啦。</p>
+<p>好了，到这里，整个神经网络的基本结构就介绍完了，慢着是不是感觉还缺少点什么，我们的神经网络是不是还是有点简单呢，对了，少了个激活函数啊。</p>
+<h2 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h2><p>在卷积层输出，一般会加上个激活函数，激活函数是用来干什么的呢<br>一句话，激活函数是用来加入非线性因素的，因为线性模型的表达能力不够。</p>
+<hr>
+<p>这是个单层的感知机，显而易见的是，它只能执行线性分类任务，</p>
+<p><img src="/uploads/20180602/27.jpg" alt="image"><br><img src="/uploads/20180602/06.png" alt="image"></p>
+<p>这时候，我们加入激活函数，使其具有非线性分类的能力，<br><img src="/uploads/20180602/28.jpg" alt="image"></p>
+<p>不知道各位看到这里想到了什么，很像SVN里面的核函数对不对，对了，他们的作用是一样的，引入非线性因素。</p>
+<p>值得注意的是激活函数一般放在卷积层的输出，主要的激活函数有tanh, sigmoid和reLu等。</p>
+<h1 id="模型训练"><a href="#模型训练" class="headerlink" title="模型训练"></a>模型训练</h1><p>模型训练其实就是调参，所有参数初始阶段都是随机的，后面根据输出值和目标值之间的差值进行误差反向传播来调整参数值，详细介绍见<a href="../../02/一文带你看懂BP神经网络/">BP神经网络</a></p>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>以上我们介绍的只是卷积神经网络的基本结构，实际上卷积核数量和其他各层数量，理论上都是可以任意添加的，这个可以根据具体任务来确定。</p>
 
       
     </div>
@@ -394,7 +399,7 @@
           
             <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
           
-            <a href="/tags/编程/" rel="tag"># 编程</a>
+            <a href="/tags/神经网络/" rel="tag"># 神经网络</a>
           
         </div>
       
@@ -407,14 +412,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/05/28/机器学习入门/" rel="next" title="机器学习入门">
+                <i class="fa fa-chevron-left"></i> 机器学习入门
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/06/15/cnn/" rel="prev" title="卷积神经网络（CNN）详解">
-                卷积神经网络（CNN）详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/27/图像的卷积/" rel="prev" title="图像的卷积">
+                图像的卷积 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -569,7 +578,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#机器学习概念"><span class="nav-number">2.</span> <span class="nav-text">机器学习概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是机器学习"><span class="nav-number">2.1.</span> <span class="nav-text">什么是机器学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习相关概念的区别"><span class="nav-number">2.2.</span> <span class="nav-text">机器学习相关概念的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习的应用"><span class="nav-number">2.3.</span> <span class="nav-text">机器学习的应用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#机器学习方法"><span class="nav-number">3.</span> <span class="nav-text">机器学习方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#监督学习方法"><span class="nav-number">3.1.</span> <span class="nav-text">监督学习方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#非监督学习方法"><span class="nav-number">3.2.</span> <span class="nav-text">非监督学习方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#半监督学习方法"><span class="nav-number">3.3.</span> <span class="nav-text">半监督学习方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强化学习"><span class="nav-number">3.4.</span> <span class="nav-text">强化学习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遗传算法"><span class="nav-number">3.5.</span> <span class="nav-text">遗传算法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#why-CNN"><span class="nav-number">2.</span> <span class="nav-text">why CNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CNN基本结构"><span class="nav-number">3.</span> <span class="nav-text">CNN基本结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#卷积层"><span class="nav-number">3.1.</span> <span class="nav-text">卷积层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#池化层"><span class="nav-number">3.2.</span> <span class="nav-text">池化层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全连接层"><span class="nav-number">3.3.</span> <span class="nav-text">全连接层</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出层与softmax函数"><span class="nav-number">3.4.</span> <span class="nav-text">输出层与softmax函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#激活函数"><span class="nav-number">3.5.</span> <span class="nav-text">激活函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型训练"><span class="nav-number">4.</span> <span class="nav-text">模型训练</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
 
           </div>
